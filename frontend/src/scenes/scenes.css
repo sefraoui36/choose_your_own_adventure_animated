@@ -1,0 +1,67 @@
+/* ═══════════════════════════════════════════════
+   SCÈNE — plein écran, derrière tout le contenu
+   ═══════════════════════════════════════════════ */
+.scene-root {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  perspective: 1200px;
+  transition: opacity 0.8s ease;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.scene .layer {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+.layer-sky       { z-index: 2; }
+.layer-mid       { z-index: 3; }
+.layer-fore      { z-index: 4; }
+.layer-particles { z-index: 5; }
+.layer-ambient   { z-index: 6; pointer-events: none; }
+
+/* Overlay sombre pour lisibilité du texte au-dessus */
+.scene-overlay-text {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  background: radial-gradient(
+    circle at 50% 40%,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+  pointer-events: none;
+}
+
+/* ─── Positions ─── */
+.pos-center       { position: absolute; left: 50%; bottom: 20%; transform: translateX(-50%); }
+.pos-left         { position: absolute; left: 8%;  bottom: 15%; }
+.pos-right        { position: absolute; right: 8%; bottom: 15%; }
+.pos-bottom-left  { position: absolute; left: 5%;  bottom: 5%; }
+.pos-bottom-right { position: absolute; right: 5%; bottom: 5%; }
+.pos-top-left     { position: absolute; left: 5%;  top: 10%; }
+.pos-top-right    { position: absolute; right: 5%; top: 10%; }
+.pos-spread       { position: absolute; left: 30%; bottom: 10%; }
+
+/* ─── Éléments SVG ─── */
+.scene .part {
+  position: relative;
+  display: block;
+}
+
+.scene .part svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
